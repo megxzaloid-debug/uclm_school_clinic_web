@@ -71,10 +71,10 @@ $("historyTabs").addEventListener("click",e=>{
 });
 $("markRead").onclick=()=>{notifications.forEach(n=>n.read=true);render();toast("All notifications marked as read.");};
 $("editProfile").onclick=()=>{
-  ["fullName","email","phone","course"].forEach(id=>$(id).disabled=false);
+  ["fullName","email","phone"].forEach(id=>$(id).disabled=false);
   $("saveProfile").classList.remove("hidden");$("editProfile").classList.add("hidden");
 };
-$("profileForm").onsubmit=e=>{e.preventDefault();["fullName","email","phone","course"].forEach(id=>$(id).disabled=true);$("saveProfile").classList.add("hidden");$("editProfile").classList.remove("hidden");toast("Profile changes saved on this device.");};
+$("profileForm").onsubmit=e=>{e.preventDefault();["fullName","email","phone"].forEach(id=>$(id).disabled=true);$("saveProfile").classList.add("hidden");$("editProfile").classList.remove("hidden");toast("Profile changes saved on this device.");};
 const tips=[["Stay Hydrated!","Drink plenty of water to keep your body healthy and support your daily activities.","💧"],["Eat Healthy!","Choose nutritious foods like fruits, vegetables, and whole grains.","🍎"],["Get Enough Sleep!","Aim for a regular sleep schedule so your body and mind can rest.","🌙"],["Keep Moving!","Take short breaks from sitting and include movement in your daily routine.","🏃"]];
 let tipIndex=0;$("nextTip").onclick=()=>{tipIndex=(tipIndex+1)%tips.length;$("tipTitle").textContent=tips[tipIndex][0];$("tipText").textContent=tips[tipIndex][1];document.querySelector(".water-art").textContent=tips[tipIndex][2]};
 $("logoutBtn").onclick=()=>{if(confirm("Are you sure you want to log out?")){toast("Logged out successfully.");}};
