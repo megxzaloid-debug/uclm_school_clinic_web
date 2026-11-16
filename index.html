@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UCLM School Clinic Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">UCLM</div>
+        <p>University of Cebu<br>Lapu-Lapu and Mandaue</p>
+        <span class="clinic-label">SCHOOL CLINIC PORTAL</span>
+      </div>
+      <nav class="nav">
+        <button class="nav-link active" data-page="dashboard"><span>⌂</span> Home</button>
+        <button class="nav-link" data-page="appointments"><span>▦</span> My Appointments</button>
+        <button class="nav-link" data-page="history"><span>◷</span> Appointment History</button>
+        <button class="nav-link" data-page="profile"><span>♙</span> My Profile</button>
+        <button class="nav-link" data-page="notifications"><span>♧</span> Notifications <i class="nav-badge" id="navUnread">1</i></button>
+      </nav>
+      <button class="logout-link" id="logoutBtn"><span>⇥</span> Logout</button>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+        <div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="Search in UCLM Clinic..."></div>
+        <div class="top-actions">
+          <button class="icon-button" data-page="notifications" aria-label="Notifications">♧<b class="dot"></b></button>
+          <button class="user-chip" data-page="profile"><span class="avatar">A</span><span><strong>Adrianne Regidor</strong><small>Student</small></span><span>⌄</span></button>
+        </div>
+      </header>
+
+      <section class="page active" id="dashboard">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">UCLM SCHOOL CLINIC</p>
+            <h1>Hello, Adrianne! <span>👋</span></h1>
+            <p>Take care of your health, always.</p>
+            <button class="primary-btn" id="bookHero">▦ &nbsp; Book an Appointment <span>→</span></button>
+          </div>
+          <div class="hero-art"><div class="pulse">♡<small>＋</small></div><p>Healthy Students,<br>Strong UCLM</p></div>
+        </div>
+
+        <div class="quick-grid">
+          <button class="quick-card" data-page="appointments"><span class="quick-icon">▦</span><span><strong>My Appointments</strong><small>View and manage your appointments.</small></span><b>→</b></button>
+          <button class="quick-card" data-page="profile"><span class="quick-icon">♙</span><span><strong>My Profile</strong><small>View and update your profile.</small></span><b>→</b></button>
+          <button class="quick-card" data-page="notifications"><span class="quick-icon">♧</span><span><strong>Notifications</strong><small>Stay updated with clinic announcements.</small></span><b>→</b></button>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="panel upcoming-panel">
+            <div class="panel-heading"><h2>▦ &nbsp; Upcoming Appointment</h2><button class="text-btn" data-page="appointments">View All →</button></div>
+            <div id="dashboardUpcoming" class="upcoming-content"></div>
+          </div>
+          <div class="panel tip-panel">
+            <div class="panel-heading"><h2>☼ &nbsp; Health Tips</h2></div>
+            <div class="tip-content"><div><p class="eyebrow">DAILY REMINDER</p><h2 id="tipTitle">Stay Hydrated!</h2><p id="tipText">Drink plenty of water to keep your body healthy and support your daily activities.</p><button class="secondary-btn" id="nextTip">Next Tip →</button></div><div class="water-art">💧</div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page" id="appointments">
+        <div class="page-heading"><div><p class="eyebrow">CLINIC SERVICES</p><h1>My Appointments</h1><p>Book a visit and keep track of your clinic schedule.</p></div><button class="primary-btn" id="bookPage">＋ Book an Appointment</button></div>
+        <div class="stats-row">
+          <div class="stat-card"><small>Total Appointments</small><strong id="totalCount">6</strong></div>
+          <div class="stat-card"><small>Upcoming</small><strong id="upcomingCount">1</strong></div>
+          <div class="stat-card"><small>Completed</small><strong id="completedCount">4</strong></div>
+        </div>
+        <div class="panel table-panel"><div class="panel-heading"><h2>Appointment List</h2><select id="appointmentFilter"><option value="All">All Status</option><option>Upcoming</option><option>Completed</option><option>Cancelled</option></select></div><div class="table-scroll"><table><thead><tr><th>Date</th><th>Time</th><th>Service</th><th>Doctor / Staff</th><th>Status</th><th>Action</th></tr></thead><tbody id="appointmentRows"></tbody></table></div></div>
+      </section>
+
+      <section class="page" id="history">
+        <div class="page-heading"><div><p class="eyebrow">YOUR CLINIC RECORD</p><h1>Appointment History</h1><p>Here are your past and upcoming appointments.</p></div></div>
+        <div class="panel table-panel">
+          <div class="tabs" id="historyTabs"><button class="tab active" data-filter="All">▦ All <b>6</b></button><button class="tab" data-filter="Upcoming">▦ Upcoming <b>1</b></button><button class="tab" data-filter="Completed">✓ Completed <b>4</b></button><button class="tab" data-filter="Cancelled">⊗ Cancelled <b>1</b></button></div>
+          <div class="table-scroll"><table><thead><tr><th>Date</th><th>Time</th><th>Service</th><th>Doctor / Staff</th><th>Status</th><th>Action</th></tr></thead><tbody id="historyRows"></tbody></table></div>
+          <div class="table-footer"><span id="historyCount">Showing 1–6 of 6 appointments</span><div><button class="page-btn" disabled>‹</button><button class="page-btn current">1</button><button class="page-btn" disabled>›</button></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="profile">
+        <div class="page-heading"><div><p class="eyebrow">ACCOUNT SETTINGS</p><h1>My Profile</h1><p>View and update your student information.</p></div></div>
+        <div class="profile-layout"><div class="panel profile-card"><div class="profile-avatar">A</div><h2>Adrianne Regidor</h2><p>UCLM Student</p><span class="status-pill confirmed">Active Student</span></div><div class="panel profile-info"><div class="panel-heading"><h2>Student Information</h2><button class="outline-btn" id="editProfile">Edit Profile</button></div><form id="profileForm"><label>Full Name<input id="fullName" value="Adrianne Regidor" disabled></label><label>Student ID<input value="2025-12345" disabled></label><label>Course<input value="BSBA" disabled></label><label>Email Address<input id="email" type="email" value="adrianne@uclm.edu.ph" disabled></label><label>Contact Number<input id="phone" value="09XX XXX XXXX" disabled></label><button class="primary-btn hidden" id="saveProfile" type="submit">Save Changes</button></form></div></div>
+      </section>
+
+      <section class="page" id="notifications">
+        <div class="page-heading"><div><p class="eyebrow">STAY INFORMED</p><h1>Notifications</h1><p>Updates and announcements from the UCLM School Clinic.</p></div><button class="outline-btn" id="markRead">Mark all as read</button></div>
+        <div class="panel notification-list" id="notificationList"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="bookingModal">
+    <div class="modal">
+      <button class="close-modal" data-close>×</button>
+      <p class="eyebrow">UCLM SCHOOL CLINIC</p><h2>Book an Appointment</h2><p class="muted">Choose a service and preferred schedule.</p>
+      <form id="bookingForm">
+        <label>Select Service<select id="service" required><option value="">Choose a service</option><option>General Check-up</option><option>Dental Check-up</option><option>Eye Check-up</option><option>Consultation</option><option>Health Screening</option></select></label>
+        <div class="form-row"><label>Preferred Date<input id="bookingDate" type="date" min="2026-11-16" required></label><label>Available Time<select id="bookingTime" required><option value="">Choose time</option><option>9:00 AM</option><option>9:30 AM</option><option>10:00 AM</option><option>10:30 AM</option><option>1:00 PM</option><option>2:30 PM</option></select></label></div>
+        <label>Additional Notes <textarea id="notes" rows="3" placeholder="Tell us briefly about your concern (optional)"></textarea></label>
+        <button class="primary-btn full-btn" type="submit">Confirm Appointment →</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="detailsModal"><div class="modal"><button class="close-modal" data-close>×</button><p class="eyebrow">APPOINTMENT INFORMATION</p><h2>Appointment Details</h2><div id="detailContent"></div><button class="primary-btn full-btn" data-close>Close</button></div></div>
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
